@@ -55,7 +55,7 @@ export default function CompanySizeSelect({
 			<button
 				type="button"
 				onClick={() => setOpen((v) => !v)}
-				className="w-full flex justify-between px-3 py-3 rounded-lg bg-gradient-to-b from-black via-[#000aff] to-black"
+				className="w-full flex justify-between px-3 py-3 rounded-lg bg-gradient-to-b from-black via-[#000aff] to-black cursor-pointer"
 			>
 				<span className="text-sm">{selectedLabel}</span>
 				<span
@@ -76,7 +76,7 @@ export default function CompanySizeSelect({
 								onChange(option.value);
 								setOpen(false);
 							}}
-							className="w-full text-left px-3 py-3 text-xs border-b border-[#01bdfc]/20 hover:bg-[#000aff]/50"
+							className="w-full text-left px-3 py-3 text-xs border-b border-[#01bdfc]/20 hover:bg-[#000aff]/50 cursor-pointer"
 						>
 							{option.label}
 						</button>
