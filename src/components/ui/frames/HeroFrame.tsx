@@ -1,7 +1,6 @@
 // =====================================
 // src/pages/components/ui/frames/heroFrame.tsx
 // ===================================== HERO FRAME COMPONENT
-
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 

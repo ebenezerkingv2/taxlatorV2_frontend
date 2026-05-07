@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/cards/TaxOptionsCard.tsx
 // ===================================== TAX OPTIONS CARD
-
 import type { ReactNode } from "react";
 
 // ===================================== DATA

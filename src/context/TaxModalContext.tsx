@@ -1,7 +1,6 @@
 // =====================================
 // src/components/context/TaxModalContext.tsx
 // ===================================== TAX MODAL CONTEXT COMPONENT
-
 import { createContext } from "react";
 
 // ===================================== DATA

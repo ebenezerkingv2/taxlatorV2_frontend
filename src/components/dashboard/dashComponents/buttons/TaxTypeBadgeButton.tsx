@@ -1,7 +1,7 @@
 // =====================================
 // src/components/dashboard/dashComponents/buttons/TaxTypeBadgeButton.tsx
 // ===================================== TAX TYPE BADGE FOR BUTTONS
-import type { TaxType } from "@taxlator/shared";
+import type { TaxType } from "../../../../api/types/tax.types";
 
 // =====================================
 type TaxTypeBadgeButtonProps = {

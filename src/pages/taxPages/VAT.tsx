@@ -216,14 +216,19 @@ export default function VAT() {
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
-							<ResultRow
-								label="Calculation Type"
-								value={result.meta?.calculationType}
-							/>
-							<ResultRow
-								label="Transaction Type"
-								value={result.meta?.transactionType}
-							/>
+							{result.meta?.taxType === "VAT" && (
+								<>
+									<ResultRow
+										label="Calculation Type"
+										value={result.meta.calculationType}
+									/>
+
+									<ResultRow
+										label="Transaction Type"
+										value={result.meta.transactionType}
+									/>
+								</>
+							)}
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />

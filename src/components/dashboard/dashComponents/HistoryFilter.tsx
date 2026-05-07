@@ -2,8 +2,8 @@
 // src/components/dashboard/dashComponents/HistoryFilter.tsx
 // ===================================== HISTORY FILTER COMPONENT
 
-import type { TaxType } from "../types";
-import { taxTypeConfig } from "../taxType.config";
+import type { TaxType } from "../../../api/types/tax.types";
+import { taxTypeConfig } from "../dashConfig/taxType.config";
 
 // ===================================== DATA
 type HistoryFilterType = "ALL" | TaxType;
@@ -14,7 +14,7 @@ type HistoryFilterProps = {
 
 const filters: HistoryFilterType[] = [
 	"ALL",
-	"PAYE / PIT",
+	"PAYE",
 	"VAT",
 	"CIT",
 	"FREELANCER",

@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/frames/TaxFrame.tsx
 // ===================================== TAX FRAME COMPONENT
-
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 

@@ -2,7 +2,7 @@
 // src/components/dashboard/dashComponents/TaxBadge.tsx
 // ===================================== TAX BADGE COMPONENT
 import { taxTypeConfig, type TaxVariant } from "../dashConfig/taxType.config";
-import type { TaxType } from "@taxlator/shared";
+import type { TaxType } from "../../../api/types/tax.types";
 
 // ===================================== DATA
 type TaxBadgeProps = {

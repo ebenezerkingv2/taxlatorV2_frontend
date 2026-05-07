@@ -1,7 +1,6 @@
 // =====================================
 // src/pages/otherPages/AboutUs.tsx
 // ===================================== ABOUT US COMPONENT
-
 import { useNavigate } from "react-router-dom";
 import GeneralButton from "../../components/ui/buttons/GeneralButton";
 import LegalAuthFrame from "../../components/ui/frames/LegalAuthFrame";

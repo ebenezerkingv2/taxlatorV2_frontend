@@ -1,7 +1,6 @@
 // ===============================
 // src/App.tsx
 // =============================== APP.TSX
-
 import "./index.css";
 import AppProviders from "./providers/AppProviders";
 

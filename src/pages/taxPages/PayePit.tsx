@@ -1,7 +1,6 @@
 // ====================================
 // src/pages/taxPages/PayePit.tsx
 // ==================================== PAYE / PIT TAX CALCULATION/RESULT LAYOUT
-
 import { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -95,7 +94,7 @@ export default function PayePit() {
 			{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
 			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
 				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
-					Tax Options on
+					Tax Options
 				</TaxOptionsButton>
 			</div>
 

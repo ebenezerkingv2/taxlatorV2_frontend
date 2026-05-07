@@ -9,7 +9,7 @@ import DashboardPageFrame from "../dashComponents/frames/DashBoardPageFrame";
 import HistoryCard from "../dashComponents/cards/HistoryCard";
 import { useHistory } from "../dashHooks/useHistory";
 import TaxTypeBadgeButton from "../dashComponents/buttons/TaxTypeBadgeButton";
-import type { TaxType } from "@taxlator/shared";
+import type { TaxType } from "../../../api/types/tax.types";
 
 // =====================================
 type HistoryFilterType = "ALL" | TaxType;

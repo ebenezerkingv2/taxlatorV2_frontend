@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/inputs/CurrencyInput.tsx
 // ===================================== CURRENCY INPUT COMPONENT
-
 import type { ReactNode } from "react";
 import { handleNumberInput } from "../../../utils/numberInput";
 import InputField from "./InputField";

@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/links/FooterLink.tsx
 // =====================================
-
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 

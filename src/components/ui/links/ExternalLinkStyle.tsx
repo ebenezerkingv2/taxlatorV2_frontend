@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/links/ExternalLink.tsx
 // =====================================
-
 import type { ReactNode } from "react";
 
 // ==================================== DATA

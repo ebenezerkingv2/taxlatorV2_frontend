@@ -1,7 +1,6 @@
 // =====================================
 // src/pages/components/frames/sectionFrame.tsx
 // ===================================== SECTION FRAME COMPONENT
-
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 

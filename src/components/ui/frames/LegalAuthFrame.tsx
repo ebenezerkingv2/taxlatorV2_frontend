@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/frames/LegalAuthFrame.tsx
 // ===================================== LEGAL AUTH FRAME COMPONENT
-
 import type { ReactNode } from "react";
 import HeroFrame from "../frames/HeroFrame";
 

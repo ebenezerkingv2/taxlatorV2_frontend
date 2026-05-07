@@ -8,8 +8,8 @@ import { AnimatedCollapse } from "../../../ui/animations/AnimatedCollapse";
 import { formatDate } from "../../dashUtils/dateFormatter";
 import TaxBadge from "../TaxBadge";
 
-import type { TaxType } from "@taxlator/shared";
-import type { TaxHistoryItem } from "../../dashApi/historyApi";
+import type { TaxType } from "../../../../api/types/tax.types";
+import type { TaxHistoryItem } from "../../../../api/history.api";
 
 // =====================================
 type HistoryCardProps = {

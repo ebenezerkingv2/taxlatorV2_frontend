@@ -1,7 +1,6 @@
 // =====================================
 // src/config/footerData.ts
 // ===================================== FOOTER DATA CONFIG COMPONENT
-
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 

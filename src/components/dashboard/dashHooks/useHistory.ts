@@ -1,11 +1,10 @@
 // ===================================== USE HISTORY
 // src/components/dashboard/dashHooks/useHistory.ts
 // =====================================
-
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import type { TaxType } from "@taxlator/shared";
+import type { TaxType } from "../../../api/types/tax.types";
 import { getHistoryApi, type HistoryResponse } from "../../../api/history.api";
 import type { TaxHistoryItem } from "../../../api/history.api";
 

@@ -1,7 +1,6 @@
 // =====================================
 // src/components/ui/links/NavLinkStyle.tsx
 // ===================================== NAV LINKS STYLE UI COMPONENT
-
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 

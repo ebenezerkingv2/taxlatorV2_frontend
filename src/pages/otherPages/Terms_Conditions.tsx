@@ -1,7 +1,6 @@
 // =====================================
 // src/pages/otherPages/Terms_Conditions.tsx
 // ===================================== TERMS_CONDITIONS COMPONENT
-
 import { useNavigate } from "react-router-dom";
 import GeneralButton from "../../components/ui/buttons/GeneralButton";
 import LegalAuthFrame from "../../components/ui/frames/LegalAuthFrame";

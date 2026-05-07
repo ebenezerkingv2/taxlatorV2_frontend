@@ -1,7 +1,7 @@
 // =====================================
 // src/components/dashboard/taxType.config.ts
 // ===================================== TAX TYPE CONFIG
-import type { TaxType } from "@taxlator/shared";
+import type { TaxType } from "../../../api/types/tax.types";
 
 // ===================================== FUNCTION
 export type TaxVariant = "ALL" | "PAYE" | "VAT" | "CIT" | "FREELANCER";

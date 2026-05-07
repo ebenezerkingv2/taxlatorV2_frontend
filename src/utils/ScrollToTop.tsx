@@ -1,7 +1,6 @@
 // ===================================== FUNCTION
 // src/components/utils/ScrollToTop.tsx
 // ===================================== SCROLL TO TOP COMPONENT
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
