@@ -9,7 +9,7 @@ import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
 import CompanySizeSelect from "../../components/ui/buttons/CompanySizeSelectButton";
-import TaxFrame from "../../components/ui/frames/TaxFrame";
+import TaxFrame from "../../components/dashboard/dashComponents/frames/TaxFrame";
 import { calculateCitApi } from "../../api/tax.api";
 import ResultCard from "../../components/ui/displayApiResult/ResultCard";
 import ResultRow from "../../components/ui/displayApiResult/ResultRow";
@@ -170,23 +170,34 @@ export default function CIT() {
 						<>
 							<ResultRow
 								label="Annual Turnover"
+								shortLabel="Ann Turnover"
 								value={result.grossAnnualIncome}
 							/>
 							<ResultRow label="Taxable Profit" value={result.taxableIncome} />
 
 							<hr className="border-[#01bdfc]" />
 
-							<ResultRow label="Annual Tax" value={result.totalAnnualTax} />
-							<ResultRow label="Monthly Tax" value={result.monthlyTax} />
+							<ResultRow
+								label="Annual Tax"
+								shortLabel="Ann Tax"
+								value={result.totalAnnualTax}
+							/>
+							<ResultRow
+								label="Monthly Tax"
+								shortLabel="Mon Tax"
+								value={result.monthlyTax}
+							/>
 
 							<hr className="border-[#01bdfc]" />
 
 							<ResultRow
 								label="Profit After Tax (Annual)"
+								shortLabel="PAT (Ann)"
 								value={result.netAnnualIncome}
 							/>
 							<ResultRow
 								label="Profit After Tax (Monthly)"
+								shortLabel="PAT (Mon)"
 								value={result.netMonthlyIncome}
 							/>
 
@@ -207,7 +218,7 @@ export default function CIT() {
 										{result.taxBreakdown.map((item, i) => (
 											<div
 												key={i}
-												className="flex justify-between text-xs text-[#dbcfff]/90"
+												className="flex justify-between text-xs text-[#dbcfff]"
 											>
 												<span>{item.label}</span>
 												<span>₦{item.tax.toLocaleString()}</span>

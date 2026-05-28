@@ -60,7 +60,7 @@ export default function HistoryPage() {
 		<DashboardPageFrame className="flex flex-col space-y-6 text-[#dbcfff]">
 			{/* ================= HEADER ================= */}
 			<div className="space-y-6">
-				<div>
+				<div className="text-end md:text-start">
 					<h1 className="text-xl font-bold text-[#f4ab17]">
 						Calculation History
 					</h1>

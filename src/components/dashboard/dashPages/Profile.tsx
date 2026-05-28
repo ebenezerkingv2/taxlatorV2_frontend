@@ -57,7 +57,7 @@ export default function Profile() {
 		<>
 			<DashboardPageFrame className="space-y-6 text-[#dbcfff]">
 				{/* =========================== HEADER */}
-				<div>
+				<div className="text-end md:text-start">
 					<h1 className="text-xl font-bold text-[#f4ab17]">Profile</h1>
 
 					<p className="text-sm text-[#dbcfff]/70">

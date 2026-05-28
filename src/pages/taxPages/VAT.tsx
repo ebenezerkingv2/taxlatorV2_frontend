@@ -8,7 +8,7 @@ import TaxOptionsButton from "../../components/ui/buttons/TaxOptionsButton";
 import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
-import TaxFrame from "../../components/ui/frames/TaxFrame";
+import TaxFrame from "../../components/dashboard/dashComponents/frames/TaxFrame";
 import { calculateVatApi } from "../../api/tax.api";
 import ResultCard from "../../components/ui/displayApiResult/ResultCard";
 import ResultRow from "../../components/ui/displayApiResult/ResultRow";
@@ -193,32 +193,47 @@ export default function VAT() {
 						<>
 							<ResultRow
 								label="Transaction Amount"
+								shortLabel="Trans Amt"
 								value={result.grossAnnualIncome}
 							/>
-							<ResultRow label="Taxable Amount" value={result.taxableIncome} />
+							<ResultRow
+								label="Taxable Amount"
+								shortLabel="Taxable Amt"
+								value={result.taxableIncome}
+							/>
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
-							<ResultRow label="VAT Amount" value={result.totalAnnualTax} />
-							<ResultRow label="Monthly VAT" value={result.monthlyTax} />
+							<ResultRow
+								label="VAT Amount"
+								shortLabel="VAT Amt"
+								value={result.totalAnnualTax}
+							/>
+							<ResultRow
+								label="Monthly VAT"
+								shortLabel="Mon VAT"
+								value={result.monthlyTax}
+							/>
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
 							<ResultRow
 								label="Net Amount (Annual)"
+								shortLabel="Net Amt (Ann)"
 								value={result.netAnnualIncome}
 							/>
 							<ResultRow
 								label="Net Amount (Monthly)"
+								shortLabel="Net Amt (Mon)"
 								value={result.netMonthlyIncome}
 							/>
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
-							{result.meta?.taxType === "VAT" && (
+							{result.taxType === "VAT" && (
 								<>
 									<ResultRow
 										label="Calculation Type"
@@ -244,7 +259,7 @@ export default function VAT() {
 									{result.taxBreakdown.map((item, index) => (
 										<div
 											key={index}
-											className="flex justify-between text-xs text-[#dbcfff]/90"
+											className="flex justify-between text-xs text-[#dbcfff]"
 										>
 											<span>{item.label}</span>
 											<span>₦{item.tax.toLocaleString()}</span>

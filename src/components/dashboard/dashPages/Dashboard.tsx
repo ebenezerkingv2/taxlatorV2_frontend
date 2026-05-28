@@ -72,7 +72,7 @@ export default function Dashboard() {
 	return (
 		<DashboardPageFrame className="space-y-6">
 			{/* ================= HEADER ================= */}
-			<div>
+			<div className="text-end md:text-start">
 				<h1 className="text-xl font-bold text-[#f4ab17]">Overview</h1>
 
 				<p className="text-sm text-[#dbcfff]/70">Here’s your tax summary</p>
@@ -123,7 +123,7 @@ export default function Dashboard() {
 					</p>
 				</div>
 
-				<TaxOptionsButton className="p-2">Tax Options</TaxOptionsButton>
+				<TaxOptionsButton className="px-4 py-3">Tax Options</TaxOptionsButton>
 			</CardFrame>
 
 			{/* ================= RECENT ================= */}
@@ -133,10 +133,10 @@ export default function Dashboard() {
 				</h3>
 
 				<div className="space-y-2 text-sm text-[#dbcfff]/90">
-					{data?.recent?.slice(0, 5).map((item: RecentItem) => (
+					{data?.recent?.slice(0, 2).map((item: RecentItem) => (
 						<div
 							key={item.id}
-							className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start py-2 border-b border-[#dbcfff]/20 last:border-b-0"
+							className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start py-2 border-b border-[#dbcfff]/50 last:border-b-0"
 						>
 							{/* ================= TAX TYPE */}
 							<div className="flex flex-col">

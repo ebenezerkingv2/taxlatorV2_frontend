@@ -1,7 +1,6 @@
 // =====================================
 // src/pages/components/dashboard/dashComponents/frames/DashboardOutletFrame.tsx
 // ===================================== DASHBOARD OUTLET FRAME COMPONENT
-
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 

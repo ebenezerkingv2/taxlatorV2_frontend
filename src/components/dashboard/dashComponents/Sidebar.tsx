@@ -85,9 +85,9 @@ export default function Sidebar({
 						transition={{ duration: 0.9 }}
 					>
 						{collapsed ? (
-							<GiHamburgerMenu size={28} className="text-black" />
+							<GiHamburgerMenu size={32} className="text-black" />
 						) : (
-							<FaTimes size={28} className="text-black" />
+							<FaTimes size={32} className="text-black" />
 						)}
 					</motion.div>
 				</button>

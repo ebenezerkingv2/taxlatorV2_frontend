@@ -52,7 +52,7 @@ export default function GuestCTA({ prefillEmail = "" }: GuestCTAProps) {
 	}
 
 	return (
-		<div className="w-full mt-6 rounded-xl bg-gradient-to-b from-black via-[#000aff] to-black border border-[#01bdfc]/20 p-4">
+		<div className="w-full mt-10 rounded-xl bg-gradient-to-b from-black via-[#000aff] to-black border border-[#01bdfc]/20 p-4">
 			{/* ================= HEADER ================= */}
 			<div className="font-semibold text-sm text-[#01bdfc]">
 				Save Your Calculations
@@ -78,7 +78,7 @@ export default function GuestCTA({ prefillEmail = "" }: GuestCTAProps) {
 				{/* ===================== BUTTON */}
 				<GeneralButton
 					onClick={handleProceed}
-					className="w-28 h-12 rounded-lg text-sm font-semibold bg-gradient-to-b from-black via-[#000aff] to-black text-[#01bdfc] border border-[#01bdfc]/30 relative"
+					className="w-28 h-14 rounded-lg text-sm font-semibold bg-gradient-to-b from-black via-[#000aff] to-black text-[#01bdfc] border border-[#01bdfc]/30 relative"
 				>
 					<span className={busy ? "opacity-0" : "opacity-100"}>Continue</span>
 

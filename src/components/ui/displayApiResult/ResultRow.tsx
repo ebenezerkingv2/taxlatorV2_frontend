@@ -1,6 +1,9 @@
 // =====================================
 // src/components/ui/displayApiResult/ResultRow.tsx
-// ===================================== API RESULT ROW
+// =====================================
+import { useRef } from "react";
+import SmartTooltip from "../../ui/toolTip/SmartTooltip";
+import { useSmartTooltip } from "../../../hooks/useSmartTooltip";
 
 type ResultRowProps = {
 	label: string;
@@ -8,26 +11,34 @@ type ResultRowProps = {
 	value: string | number | boolean | null | undefined;
 };
 
-// =====================================
 export default function ResultRow({
 	label,
 	shortLabel,
 	value,
 }: ResultRowProps) {
+	const { open, handlers } = useSmartTooltip(500);
+	const rowRef = useRef<HTMLDivElement | null>(null);
+
 	const safeValue = value === null || value === undefined ? 0 : value;
 
 	return (
-		<div className="flex justify-between text-md text-[#dbcfff]/90 font-bold">
-			<span>
-				<span className="md:hidden">{shortLabel ?? label}</span>
-				<span className="hidden md:inline">{label}</span>
-			</span>
+		<div
+			ref={rowRef}
+			className="relative flex justify-between text-md text-[#dbcfff] font-bold"
+			{...handlers}
+		>
+			{/* LABEL */}
+			<span>{shortLabel ?? label}</span>
 
+			{/* VALUE */}
 			<span>
 				{typeof safeValue === "number"
 					? safeValue.toLocaleString()
 					: String(safeValue)}
 			</span>
+
+			{/* TOOLTIP */}
+			<SmartTooltip open={open}>{label}</SmartTooltip>
 		</div>
 	);
 }

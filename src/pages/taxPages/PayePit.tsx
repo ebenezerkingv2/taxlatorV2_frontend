@@ -8,7 +8,7 @@ import TaxOptionsButton from "../../components/ui/buttons/TaxOptionsButton";
 import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
-import TaxFrame from "../../components/ui/frames/TaxFrame";
+import TaxFrame from "../../components/dashboard/dashComponents/frames/TaxFrame";
 import { calculatePayeApi } from "../../api/tax.api";
 import { AnimatedToggleRow } from "../../components/ui/animations/AnimatedToggleRow";
 import ResultCard from "../../components/ui/displayApiResult/ResultCard";
@@ -179,26 +179,41 @@ export default function PayePit() {
 					{result && (
 						<>
 							<ResultRow
-								label="Gross Income"
+								label="Gross Annual Income"
+								shortLabel="GAI"
 								value={result.grossAnnualIncome}
 							/>
-							<ResultRow label="Taxable Income" value={result.taxableIncome} />
+							<ResultRow
+								label="Taxable Income"
+								shortLabel="Taxable Inc"
+								value={result.taxableIncome}
+							/>
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
-							<ResultRow label="Annual Tax" value={result.totalAnnualTax} />
-							<ResultRow label="Monthly Tax" value={result.monthlyTax} />
+							<ResultRow
+								label="Annual Tax"
+								shortLabel="Ann Tax"
+								value={result.totalAnnualTax}
+							/>
+							<ResultRow
+								label="Monthly Tax"
+								shortLabel="Mon Tax"
+								value={result.monthlyTax}
+							/>
 
 							{/* ============== */}
 							<hr className="border-[#01bdfc]" />
 
 							<ResultRow
 								label="Net Annual Income"
+								shortLabel="NAI"
 								value={result.netAnnualIncome}
 							/>
 							<ResultRow
 								label="Net Monthly Income"
+								shortLabel="NMI"
 								value={result.netMonthlyIncome}
 							/>
 
@@ -231,11 +246,13 @@ export default function PayePit() {
 
 									<ResultRow
 										label="Pension Contribution"
+										shortLabel="Pension Cont"
 										value={result.deductions.pension}
 									/>
 
 									<ResultRow
 										label="Other Deductions"
+										shortLabel="Other Deduct"
 										value={result.deductions.otherDeductions}
 									/>
 								</div>
@@ -253,7 +270,7 @@ export default function PayePit() {
 									{result.taxBreakdown.map((item, index) => (
 										<div
 											key={index}
-											className="flex justify-between text-xs text-[#dbcfff]/90"
+											className="flex justify-between text-xs text-[#dbcfff]"
 										>
 											<span>{item.label}</span>
 											<span>₦{item.tax.toLocaleString()}</span>

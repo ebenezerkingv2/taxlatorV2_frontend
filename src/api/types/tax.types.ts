@@ -59,31 +59,26 @@ export type BaseMeta = {
 
 // =============================== VAT META
 export type VatMeta = BaseMeta & {
-	taxType: "VAT";
 	calculationType: CalculationType;
 	transactionType: TransactionType;
+	vatRate: number;
 };
 
 // =============================== CIT META
 export type CitMeta = BaseMeta & {
-	taxType: "CIT";
 	companySize?: "SMALL" | "OTHER" | "MULTINATIONAL";
 	appliedRate?: number;
 	isMultinational?: boolean;
 };
 
 // =============================== PAYE / FREELANCER META
-export type SimpleMeta = BaseMeta & {
-	taxType: "PAYE" | "FREELANCER";
-};
+export type SimpleMeta = BaseMeta;
 
 // =============================== UNION META
 export type TaxMeta = VatMeta | CitMeta | SimpleMeta;
 
 // =============================== TAX RESULT
-export type TaxResult = {
-	taxType: TaxType;
-
+type TaxResultBase = {
 	grossAnnualIncome: number;
 	taxableIncome: number;
 
@@ -96,9 +91,28 @@ export type TaxResult = {
 	taxBreakdown: TaxBreakdownItem[];
 
 	deductions?: Record<string, number | boolean | string>;
-
-	meta?: TaxMeta;
 };
+
+// =============================== VAT RESULT
+export type VatResult = TaxResultBase & {
+	taxType: "VAT";
+	meta: VatMeta;
+};
+
+// =============================== CIT RESULT
+export type CitResult = TaxResultBase & {
+	taxType: "CIT";
+	meta: CitMeta;
+};
+
+// =============================== SIMPLE RESULT
+export type SimpleResult = TaxResultBase & {
+	taxType: "PAYE" | "FREELANCER";
+	meta?: SimpleMeta;
+};
+
+// =============================== UNION
+export type TaxResult = VatResult | CitResult | SimpleResult;
 
 // =============================== API ERROR
 export type ApiError = {

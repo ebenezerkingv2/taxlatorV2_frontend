@@ -1,6 +1,7 @@
 // =====================================
 // src/dashboard/dashLayout/DashboardLayout.tsx
 // ===================================== DASHBOARD LAYOUT COMPONENT
+
 import { useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
@@ -51,7 +52,7 @@ export default function DashboardLayout() {
 					navItems={navItems}
 				/>
 
-				<div className="flex-1 ml-[5rem] pr-4 md:px-4 flex flex-col min-h-screen transition-all duration-400">
+				<div className="flex-1 ml-[4rem] pr-4 md:px-4 flex flex-col min-h-screen transition-all duration-400">
 					<Topbar />
 
 					{/* ========================= MAIN OUTLET */}
