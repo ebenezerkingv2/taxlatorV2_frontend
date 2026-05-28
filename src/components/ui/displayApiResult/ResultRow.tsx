@@ -10,7 +10,7 @@ type ResultRowProps = {
 export default function ResultRow({ label, value }: ResultRowProps) {
 	const safeValue = value === null || value === undefined ? 0 : value;
 	return (
-		<div className="flex justify-between text-xs text-[#dbcfff]/90">
+		<div className="flex justify-between text-sm text-[#dbcfff]/90 font-bold">
 			<span>{label}</span>
 
 			<span>

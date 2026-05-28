@@ -105,7 +105,7 @@ export default function CIT() {
 	return (
 		<TaxFrame>
 			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+				<TaxOptionsButton className="px-[2rem] py-[0.5rem]">
 					Tax Options
 				</TaxOptionsButton>
 			</div>
@@ -113,12 +113,12 @@ export default function CIT() {
 			<div className="grid lg:grid-cols-2 gap-6">
 				{/* LEFT */}
 				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+					<div className="flex flex-col items-center text-[#01bdfc] mb-8">
 						<h2 className="text-xl font-semibold">Company Income Tax</h2>
 						<p className="text-xs text-[#dbcfff]/90">Corporate tax</p>
 					</div>
 
-					<div className="space-y-2">
+					<div className="space-y-3">
 						<CurrencyInput
 							id="turnover"
 							label="Annual Turnover"

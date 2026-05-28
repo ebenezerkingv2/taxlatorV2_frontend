@@ -96,7 +96,7 @@ export default function Freelancer() {
 		<TaxFrame>
 			{/* ================================== HEADER*/}
 			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+				<TaxOptionsButton className="px-[2rem] py-[0.5rem]">
 					Tax Options
 				</TaxOptionsButton>
 			</div>
@@ -105,12 +105,12 @@ export default function Freelancer() {
 			<div className="grid lg:grid-cols-2 gap-6">
 				{/* ================================== LEFT (FORM*/}
 				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+					<div className="flex flex-col items-center text-[#01bdfc] mb-8">
 						<h2 className="text-xl font-bold">FREELANCER</h2>
 						<p className="text-xs text-[#dbcfff]/90">Self-employed tax</p>
 					</div>
 
-					<div className="space-y-2">
+					<div className="space-y-3">
 						<CurrencyInput
 							id="income"
 							label="Gross Annual Income"
@@ -127,12 +127,12 @@ export default function Freelancer() {
 
 						{/* ================================== TOGGLE */}
 						<div className="text-[#dbcfff]/90">
-							<div className="flex justify-between items-center bg-black p-3 rounded-lg">
+							<div className="flex justify-between items-center bg-black p-4 rounded-lg">
 								<span className="text-sm">Include Business Expenses</span>
 
 								<input
 									type="checkbox"
-									className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
+									className="text-base appearance-none w-7 h-5 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
 									checked={includeExpenses}
 									onChange={(e) => setIncludeExpenses(e.target.checked)}
 								/>

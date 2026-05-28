@@ -27,8 +27,6 @@ export default function ResultCard<T>({
 			layout
 			className={`relative rounded-2xl p-6 bg-black ${className}`}
 		>
-			<h3 className="text-lg font-bold mb-11 text-[#01bdfc]">{title}</h3>
-
 			<ResultTransition
 				show={!!result}
 				empty={
@@ -38,7 +36,10 @@ export default function ResultCard<T>({
 				}
 				className="space-y-4 text-sm"
 			>
-				{children}
+				<>
+					<h3 className="text-lg font-bold mb-11 text-[#01bdfc]">{title}</h3>
+					{children}
+				</>
 			</ResultTransition>
 		</motion.div>
 	);

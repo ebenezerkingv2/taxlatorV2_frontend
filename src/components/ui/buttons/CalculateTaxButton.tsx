@@ -24,12 +24,12 @@ export default function CalculateTaxButton({
 			onClick={onClick}
 			disabled={isDisabled}
 			className={`
-				relative mt-6 w-full rounded-lg py-3 text-sm font-bold overflow-hidden transition-all duration-400
+				relative mt-6 w-full rounded-lg py-5 text-sm font-bold overflow-hidden transition-all duration-400
 
 				${
 					isDisabled
-						? "bg-white/10 text-white text-[#dbcfff]/40 border border-white/10 cursor-not-allowed"
-						: " bg-gradient-to-b from-black via-[#000aff] to-black text-white hover:scale-[1.02] active:scale-[0.95] cursor-pointer"
+						? "bg-white/10 text-white text-[#dbcfff]/40 cursor-not-allowed"
+						: " bg-gradient-to-b from-black via-[#000aff] to-black text-white hover:scale-[1.02] cursor-pointer"
 				}
 
 				${className}

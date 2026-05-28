@@ -104,7 +104,7 @@ export default function VAT() {
 		<TaxFrame>
 			{/* ================= HEADER ================= */}
 			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+				<TaxOptionsButton className="px-[2rem] py-[0.5rem]">
 					Tax Options
 				</TaxOptionsButton>
 			</div>
@@ -113,12 +113,12 @@ export default function VAT() {
 			<div className="grid lg:grid-cols-2 gap-6">
 				{/* ================= LEFT ================= */}
 				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+					<div className="flex flex-col items-center text-[#01bdfc] mb-8">
 						<h2 className="text-xl font-semibold">VAT</h2>
 						<p className="text-xs text-[#dbcfff]/90">Value Added Tax</p>
 					</div>
 
-					<div className="space-y-4">
+					<div className="space-y-3">
 						<CurrencyInput
 							id="amount"
 							label="Transaction Amount"
@@ -130,9 +130,9 @@ export default function VAT() {
 						<div className="grid grid-cols-2 gap-3">
 							<button
 								onClick={() => setCalculationType("ADD")}
-								className={`rounded-lg py-2 text-sm font-semibold cursor-pointer transition-colors duration-300  ${
+								className={`rounded-lg py-4 text-sm font-semibold cursor-pointer transition-colors duration-300  ${
 									calculationType === "ADD"
-										? "border border-[#f4ab17] text-[#f4ab17]"
+										? "border border-[#f4ab17] text-green-500"
 										: "bg-black text-[#01bdfc] border border-[#01bdfc]/50"
 								}`}
 							>
@@ -141,9 +141,9 @@ export default function VAT() {
 
 							<button
 								onClick={() => setCalculationType("REMOVE")}
-								className={`rounded-lg py-2 text-sm font-semibold cursor-pointer transition-colors duration-300  ${
+								className={`rounded-lg py-4 text-sm font-semibold cursor-pointer transition-colors duration-300  ${
 									calculationType === "REMOVE"
-										? "border border-[#f4ab17] text-[#f4ab17]"
+										? "border border-[#f4ab17] text-green-500"
 										: "bg-black text-[#01bdfc] border border-[#01bdfc]/50"
 								}`}
 							>
@@ -152,19 +152,19 @@ export default function VAT() {
 						</div>
 
 						{/* ================= TRANSACTION TYPE ================= */}
-						<div className="space-y-3">
+						<div className="space-y-4">
 							{TRANSACTION_TYPES.map((item) => (
 								<button
 									key={item.value}
 									onClick={() => setTransactionType(item.value)}
-									className={`w-full flex justify-between items-center px-3 py-3 rounded-lg text-sm cursor-pointer transition-all duration-300 ${
+									className={`w-full flex justify-between items-center px-3 py-4 rounded-lg text-sm cursor-pointer transition-all duration-300 ${
 										transactionType === item.value
-											? "border border-[#f4ab17] text-[#f4ab17]"
+											? "border border-[#f4ab17] text-green-500"
 											: "bg-black border border-[#01bdfc]/20 text-[#dbcfff]/80"
 									}`}
 								>
 									<span>{item.label}</span>
-									<span className="transition-colors duration-300 ease-in-out">
+									<span className="text-green-500 text-lg font-bold transition-all duration-300 ease-in-out">
 										{transactionType === item.value ? "✔" : ""}
 									</span>
 								</button>

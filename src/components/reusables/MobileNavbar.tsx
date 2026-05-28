@@ -43,7 +43,8 @@ function MobileNavbar({ isOpen, toggleMenu }: MobileNavbarProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className="fixed inset-0 z-30"
+						onClick={toggleMenu}
+						className="fixed inset-0 z-30 bg-black/40 backdrop-blur-[2px]"
 					/>
 
 					{/* MENU */}

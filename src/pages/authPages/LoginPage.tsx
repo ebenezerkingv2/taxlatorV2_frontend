@@ -94,7 +94,7 @@ export default function LoginPage() {
 									type="checkbox"
 									checked={rememberMe}
 									onChange={(e) => setRememberMe(e.target.checked)}
-									className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
+									className="appearance-none w-7 h-5 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
 								/>
 								<span>Remember me</span>
 							</label>
@@ -114,7 +114,7 @@ export default function LoginPage() {
 							Don’t have an account?{" "}
 							<Link
 								to="/signUp-page"
-								className="text-[#01bdfc] hover:text-[#f4ab17] font-bold"
+								className="text-sm text-[#01bdfc] hover:text-[#f4ab17] font-bold"
 							>
 								Sign up
 							</Link>

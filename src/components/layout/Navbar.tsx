@@ -102,9 +102,9 @@ function Navbar() {
 							transition={{ duration: 0.9 }}
 						>
 							{isOpen ? (
-								<FaTimes size={28} className="text-[#f4ab17]" />
+								<FaTimes size={32} className="text-[#f4ab17]" />
 							) : (
-								<GiHamburgerMenu size={28} className="text-[#dbcfff]" />
+								<GiHamburgerMenu size={32} className="text-[#dbcfff]" />
 							)}
 						</motion.div>
 					</button>

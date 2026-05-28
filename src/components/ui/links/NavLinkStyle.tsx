@@ -24,7 +24,7 @@ export default function NavLinkStyle({
 			to={to}
 			onClick={onClick}
 			className={({ isActive }) =>
-				`relative w-full block group font-bold py-2 md:py-0 transition-colors duration-400
+				`relative w-full block group font-bold py-2 md:py-1 transition-colors duration-400
 				${isActive ? "bg-black" : "bg-black/30 hover:bg-black"} ${className}`
 			}
 		>

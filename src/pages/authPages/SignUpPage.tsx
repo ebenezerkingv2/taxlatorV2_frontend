@@ -138,7 +138,7 @@ export default function LoginOutPage() {
 							Already have an account?{" "}
 							<Link
 								to="/login-page"
-								className="text-[#01bdfc] hover:text-[#f4ab17] font-bold"
+								className="text-sm text-[#01bdfc] hover:text-[#f4ab17] font-bold"
 							>
 								Login
 							</Link>

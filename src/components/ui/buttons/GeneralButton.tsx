@@ -22,7 +22,7 @@ export default function GeneralButton({
 	onClick,
 }: GeneralButtonProps) {
 	const baseStyles = `
-		relative inline-block px-[1.2rem] py-[0.5rem] font-bold bg-black/30 hover:bg-black group cursor-pointer`;
+		relative inline-block px-[1.2rem] py-[1rem] font-bold bg-black/30 hover:bg-black group cursor-pointer`;
 
 	// ====================== NAVIGATION BUTTON
 	if (to) {

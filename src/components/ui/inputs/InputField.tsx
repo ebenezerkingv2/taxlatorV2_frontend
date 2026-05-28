@@ -38,7 +38,7 @@ export default function InputField({
 	return (
 		<div className={`space-y-1 ${containerClassName}`}>
 			{/* ===================== LABEL */}
-			<label htmlFor={id} className="text-sm text-[#dbcfff]/90 ml-[0.2rem]">
+			<label htmlFor={id} className="text-sm font-bold text-[#dbcfff]/90 ml-[0.2rem]">
 				{label}
 			</label>
 
@@ -58,7 +58,7 @@ export default function InputField({
 					onChange={onChange}
 					placeholder={placeholder}
 					autoComplete={autoComplete}
-					className={`w-full rounded-lg py-3 pr-3 bg-black/50 border border-[#01bdfc]/50 focus:outline-none focus:border-[#f4ab17]/50 text-[#dbcfff] ${
+					className={`w-full rounded-lg text-lg py-3 pr-3 bg-black/50 border border-[#01bdfc]/50 focus:outline-none focus:border-[#f4ab17]/50 text-[#dbcfff] ${
 						leftElement ? "pl-8" : "pl-3"
 					} ${inputClassName}`}
 				/>
