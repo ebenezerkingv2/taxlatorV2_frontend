@@ -46,6 +46,8 @@ export default function VAT() {
 	// ================= CLEAR INPUT FIELDS AFTER CALCULATION
 	const clearInputs = () => {
 		setAmount("");
+		setCalculationType("ADD");
+		setTransactionType("DOMESTIC");
 	};
 
 	// ================= VALIDATION

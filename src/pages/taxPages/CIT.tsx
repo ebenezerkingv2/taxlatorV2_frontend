@@ -68,6 +68,7 @@ export default function CIT() {
 		setFixedAssets("");
 		setTaxableProfit("");
 		setAccountingProfit("");
+		setCompanySize("");
 	};
 
 	const handleCalculate = async () => {

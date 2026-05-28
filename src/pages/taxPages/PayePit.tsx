@@ -44,6 +44,8 @@ export default function PayePit() {
 	const clearInputs = () => {
 		setIncome("");
 		setOther("");
+		setNhis(false);
+		setNhf(false);
 	};
 
 	// ================= VALIDATION
@@ -211,16 +213,19 @@ export default function PayePit() {
 
 									<ResultRow
 										label="National Health Insurance Scheme"
+										shortLabel="NHIS"
 										value={result.deductions.nhis}
 									/>
 
 									<ResultRow
 										label="National Housing Fund"
+										shortLabel="NHF"
 										value={result.deductions.nhf}
 									/>
 
 									<ResultRow
 										label="Government Relief Allowance"
+										shortLabel="GRA"
 										value={result.deductions.cra}
 									/>
 
