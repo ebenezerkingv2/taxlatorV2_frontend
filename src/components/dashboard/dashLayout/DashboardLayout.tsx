@@ -1,7 +1,6 @@
 // =====================================
 // src/dashboard/dashLayout/DashboardLayout.tsx
 // ===================================== DASHBOARD LAYOUT COMPONENT
-
 import { useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
@@ -14,7 +13,7 @@ import Topbar from "../dashComponents/Topbar";
 import { MdDashboard, MdCalculate, MdPerson } from "react-icons/md";
 
 import useAuthSocket from "../../../hooks/useAuthSocket";
-import { getUser } from "../../../utils/auth";
+import { useUser } from "../../../context/useUser";
 
 export default function DashboardLayout() {
 	const [collapsed, setCollapsed] = useState(true);
@@ -24,7 +23,7 @@ export default function DashboardLayout() {
 	const navigate = useNavigate();
 
 	// =============================== SOCKET AUTH SYNC
-	const user = getUser();
+	const { user } = useUser();
 	useAuthSocket(user?.id);
 
 	// =============================== NAV ITEMS (ONLY ONCE)

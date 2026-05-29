@@ -1,7 +1,7 @@
-// ===================================== IMAGE OPTIMIZATION
-// UTILS = R
-
 // =====================================
+// src/components/reusables/OptimizedImage.tsx
+// ===================================== IMAGE OPTIMIZATION COMPONENT
+import React, { useState } from "react";
 import { getCloudinaryUrl } from "../dashboard/dashUtils/cloudinary";
 
 // =====================================
@@ -18,11 +18,26 @@ export default function OptimizedImage({
 	width,
 	height,
 	crop,
+	className = "",
 	...props
 }: Props) {
+	const [loading, setLoading] = useState(true);
+
 	if (!publicId || publicId.trim() === "") return null;
 
 	return (
-		<img {...props} src={getCloudinaryUrl(publicId, { width, height, crop })} />
+		<div className="relative">
+			{/* ================= SKELETON */}
+			{loading && (
+				<div className="absolute inset-0 rounded-full bg-gray-800 animate-pulse" />
+			)}
+
+			<img
+				{...props}
+				src={getCloudinaryUrl(publicId, { width, height, crop })}
+				onLoad={() => setLoading(false)}
+				className={className}
+			/>
+		</div>
 	);
 }

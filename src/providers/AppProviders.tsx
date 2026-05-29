@@ -1,7 +1,7 @@
 // =====================================
 // src/providers/AppProviders.tsx
-// =====================================
-import { useState } from "react";
+// ===================================== APP PROVIDERS ROOT WRAPPER
+import { useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -13,48 +13,67 @@ import ScrollToTop from "../utils/ScrollToTop";
 import AppRoutes from "../routes/AppRoutes";
 
 import { UserProvider } from "../context/UserProvider";
-import { AuthProvider } from "../context/AuthProvider";
-
 import { TAX_ROUTES } from "../routes/taxRoutes";
 
-// =====================================
-const queryClient = new QueryClient();
+// ===================================== QUERY CLIENT (OPTIMIZED)
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 1000 * 60 * 5, // 5 minutes cache freshness
+			refetchOnWindowFocus: false,
+			retry: 1,
+		},
+	},
+});
 
 // =====================================
 export default function AppProviders() {
 	const [open, setOpen] = useState(false);
-	const navigate = useNavigate();
-	const location = useLocation(); 
 
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	// ===================================== ROUTE STATE
 	const isDashboard = location.pathname.startsWith("/dashboard");
 
+	// ===================================== MODAL HANDLERS
 	const openModal = () => setOpen(true);
 	const closeModal = () => setOpen(false);
 
+	// ===================================== MEMOIZED CONTEXT VALUE (PREVENT RE-RENDERS)
+	const taxModalValue = useMemo(
+		() => ({
+			openModal,
+		}),
+		[],
+	);
+
 	return (
 		<QueryClientProvider client={queryClient}>
-			<AuthProvider>
-				<UserProvider>
-					<TaxModalContext.Provider value={{ openModal }}>
-						<ScrollToTop />
-						<AppRoutes />
+			<UserProvider>
+				<TaxModalContext.Provider value={taxModalValue}>
+					{/* ================= GLOBAL SCROLL RESET */}
+					<ScrollToTop />
 
-						<TaxOptionsModal
-							open={open}
-							onClose={closeModal}
-							onPick={(type) => {
-								closeModal();
+					{/* ================= ROUTES */}
+					<AppRoutes />
 
-								const route = isDashboard
-									? TAX_ROUTES[type].dashboard
-									: TAX_ROUTES[type].public;
+					{/* ================= TAX MODAL */}
+					<TaxOptionsModal
+						open={open}
+						onClose={closeModal}
+						onPick={(type) => {
+							closeModal();
 
-								navigate(route);
-							}}
-						/>
-					</TaxModalContext.Provider>
-				</UserProvider>
-			</AuthProvider>
+							const route = isDashboard
+								? TAX_ROUTES[type].dashboard
+								: TAX_ROUTES[type].public;
+
+							navigate(route);
+						}}
+					/>
+				</TaxModalContext.Provider>
+			</UserProvider>
 		</QueryClientProvider>
 	);
 }
