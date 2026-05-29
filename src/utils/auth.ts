@@ -1,32 +1,28 @@
-// =====================================
+// ===================================== AUTH UTILS (COOKIE-BASED REFRESH)
 // src/utils/auth.ts
-// ===================================== AUTH UTILS
+// =====================================
 export type User = {
 	id: string;
 	name: string;
 	email: string;
 	role: "USER" | "ADMIN";
+	image?: string;
 };
 
-// ===============================
-export const setAuth = (token: string, user: User) => {
-	localStorage.setItem("token", token);
-	localStorage.setItem("user", JSON.stringify(user));
+// ===================================== ACCESS TOKEN ONLY
+const ACCESS_TOKEN_KEY = "token";
+
+// ===================================== STORE ACCESS TOKEN ONLY
+export const setAuth = (accessToken: string) => {
+	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 };
 
-// ===============================
+// ===================================== GET ACCESS TOKEN
 export const getToken = () => {
-	return localStorage.getItem("token");
+	return localStorage.getItem(ACCESS_TOKEN_KEY);
 };
 
-// ===============================
-export const getUser = (): User | null => {
-	const user = localStorage.getItem("user");
-	return user ? JSON.parse(user) : null;
-};
-
-// =============================== LOGOUT
+// ===================================== LOGOUT
 export const logout = () => {
-	localStorage.removeItem("token");
-	localStorage.removeItem("user");
+	localStorage.removeItem(ACCESS_TOKEN_KEY);
 };

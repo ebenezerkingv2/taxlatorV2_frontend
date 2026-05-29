@@ -6,10 +6,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import GeneralButton from "../../components/ui/buttons/GeneralButton";
 import LegalAuthFrame from "../../components/ui/frames/LegalAuthFrame";
 import InputField from "../../components/ui/inputs/InputField";
+// =============================== TOAST
+import toast from "react-hot-toast";
 
 // ===================================== API HELPERS
 import { registerApi } from "../../api/auth.api";
 import { setAuth } from "../../utils/auth";
+
+// ===================================== TYPES
+type SignupError = {
+	response?: {
+		data?: {
+			message?: string;
+		};
+	};
+};
 
 // ===================================== PAGE
 export default function LoginOutPage() {
@@ -24,9 +35,19 @@ export default function LoginOutPage() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 
+	const [loading, setLoading] = useState(false);
+
 	// ===================================== API CONNECTION
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		// ================= PASSWORD CHECK
+		if (password !== confirmPassword) {
+			toast.error("Passwords do not match");
+			return;
+		}
+
+		setLoading(true);
 
 		try {
 			const res = await registerApi(
@@ -39,9 +60,18 @@ export default function LoginOutPage() {
 
 			setAuth(token, user);
 
+			toast.success("Account created successfully");
+
 			navigate("/dashboard");
 		} catch (err) {
-			console.error("Signup failed:", err);
+			const errorObj = err as SignupError;
+
+			const message =
+				errorObj?.response?.data?.message || "Signup failed. Try again.";
+
+			toast.error(message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -129,8 +159,8 @@ export default function LoginOutPage() {
 						</div>
 
 						{/* ===================== BUTTON */}
-						<GeneralButton type="submit" className="mt-4">
-							Sign Up
+						<GeneralButton type="submit" className="mt-1" disabled={loading}>
+							{loading ? "Creating Account..." : "Sign Up"}
 						</GeneralButton>
 
 						{/* ===================== LINKS */}

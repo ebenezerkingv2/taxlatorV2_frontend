@@ -1,92 +1,96 @@
-// =====================================
+// ===================================== USER PROVIDER
 // src/context/UserProvider.tsx
 // =====================================
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
-
 import UserContext from "./UserContext";
-import { getToken } from "../utils/auth";
-import { getMeApi, updateUserApi } from "../api/user.api";
+import { getToken, setAuth, logout as clearAuth } from "../utils/auth";
+import {
+	getMeApi,
+	updateUserApi,
+	type UpdateUserPayload,
+} from "../api/user.api";
 import { transformUser } from "../components/dashboard/dashUtils/transformUser";
 import type { UserModel } from "../components/dashboard/dashComponents/dashTypes/user.model";
-import type { UpdateUserPayload } from "../api/user.api";
 
 // =====================================
 export function UserProvider({ children }: { children: ReactNode }) {
 	const [user, setUserState] = useState<UserModel | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	// ===================================== LOAD USER ON MOUNT
-	useEffect(() => {
-		const loadUser = async () => {
-			try {
-				const token = getToken();
+	// ===================================== LOGIN
+	const login = async (accessToken: string) => {
+		try {
+			setLoading(true);
 
-				if (!token) {
-					setUserState(null);
-					setLoading(false);
-					return;
-				}
+			setAuth(accessToken);
 
-				const data = await getMeApi();
+			await refreshUser();
+		} catch (err) {
+			console.error("Login failed:", err);
+			clearAuth();
+			setUserState(null);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-				if (!data) {
-					setUserState(null);
-					setLoading(false);
-					return;
-				}
+	// ===================================== REFRESH USER
+	const refreshUser = async () => {
+		try {
+			const token = getToken();
 
-				setUserState(transformUser(data));
-			} catch (err) {
-				console.error("Failed to load user:", err);
+			if (!token) {
 				setUserState(null);
+				return;
+			}
+
+			const data = await getMeApi();
+
+			if (!data) {
+				setUserState(null);
+				return;
+			}
+
+			setUserState(transformUser(data));
+		} catch (err) {
+			console.error("Failed to refresh user:", err);
+			clearAuth();
+			setUserState(null);
+		}
+	};
+
+	// ===================================== INIT
+	useEffect(() => {
+		const init = async () => {
+			try {
+				setLoading(true);
+				await refreshUser();
 			} finally {
 				setLoading(false);
 			}
 		};
 
-		loadUser();
-	}, []);
-
-	// =====================================
-	const refreshUser = async () => {
-		try {
-			const token = getToken();
-			if (!token) return;
-
-			const data = await getMeApi();
-			if (!data) return;
-
-			setUserState(transformUser(data));
-		} catch (err) {
-			console.error("Failed to refresh user:", err);
-		}
-	};
-
-	// =====================================
-	useEffect(() => {
-		const syncUser = () => {
-			refreshUser();
-		};
-
-		window.addEventListener("auth:login", syncUser);
-
-		return () => {
-			window.removeEventListener("auth:login", syncUser);
-		};
+		init();
 	}, []);
 
 	// ===================================== UPDATE USER
 	const updateUser = async (data: UpdateUserPayload) => {
 		try {
-			const user = await updateUserApi(data);
+			const updated = await updateUserApi(data);
 
-			if (!user) return;
+			if (!updated) return;
 
-			setUserState(transformUser(user));
+			setUserState(transformUser(updated));
 		} catch (err) {
-			console.error("Failed to update user:", err);
+			console.error("Update failed:", err);
 		}
+	};
+
+	// ===================================== LOGOUT
+	const logout = () => {
+		clearAuth();
+		setUserState(null);
 	};
 
 	return (
@@ -94,7 +98,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
 			value={{
 				user,
 				loading,
+				login,
+				logout,
 				updateUser,
+				refreshUser,
 			}}
 		>
 			{children}

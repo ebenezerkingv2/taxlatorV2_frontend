@@ -10,6 +10,7 @@ type GeneralButtonProps = {
 	className?: string;
 	type?: "button" | "submit" | "reset";
 	to?: string;
+	disabled?: boolean;
 	onClick?: () => void;
 };
 

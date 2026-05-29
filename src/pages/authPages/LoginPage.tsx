@@ -6,10 +6,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import GeneralButton from "../../components/ui/buttons/GeneralButton";
 import LegalAuthFrame from "../../components/ui/frames/LegalAuthFrame";
 import InputField from "../../components/ui/inputs/InputField";
+// =============================== TOAST
+import toast from "react-hot-toast";
 
 // ===================================== API HELPERS
 import { loginApi } from "../../api/auth.api";
 import { setAuth } from "../../utils/auth";
+
+// ===================================== TYPES
+type LoginError = {
+	response?: {
+		data?: {
+			message?: string;
+		};
+	};
+};
 
 // ===================================== PAGE
 export default function LoginPage() {
@@ -22,9 +33,13 @@ export default function LoginPage() {
 	const [password, setPassword] = useState("");
 	const [rememberMe, setRememberMe] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+
 	// ===================================== API CONNECTION
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		setLoading(true);
 
 		try {
 			const res = await loginApi(email, password);
@@ -33,13 +48,16 @@ export default function LoginPage() {
 
 			setAuth(token, user);
 
-			if (user.role === "ADMIN") {
-				navigate("/dashboard");
-			} else {
-				navigate("/dashboard");
-			}
+			navigate("/dashboard");
 		} catch (err) {
-			console.error("Login failed:", err);
+			const errorObj = err as LoginError;
+
+			const message =
+				errorObj?.response?.data?.message || "Login failed. Try again.";
+
+			toast.error(message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -61,34 +79,34 @@ export default function LoginPage() {
 				{/* ================= FRAME + FORM ================= */}
 				<LegalAuthFrame className="w-full max-w-2xl mx-auto rounded-2xl bg-gradient-to-b from-black via-[#000aff] to-black p-6">
 					<form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-						{/* ===================== EMAIL */}
-						<div>
-							<InputField
-								id="Email"
-								label="Email"
-								type="email"
-								value={email}
-								autoComplete="email"
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Enter your email"
-							/>
-						</div>
+						{/* ===================== EMAIL ===================== */}
+						<InputField
+							id="Email"
+							label="Email"
+							type="email"
+							value={email}
+							autoComplete="email"
+							onChange={(e) => {
+								setEmail(e.target.value);
+							}}
+							placeholder="Enter your email"
+						/>
 
-						{/* ===================== PASSWORD */}
-						<div>
-							<InputField
-								id="Password"
-								label="Password"
-								type="password"
-								value={password}
-								autoComplete="current-password"
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder="Enter your password"
-							/>
-						</div>
+						{/* ===================== PASSWORD ===================== */}
+						<InputField
+							id="Password"
+							label="Password"
+							type="password"
+							value={password}
+							autoComplete="current-password"
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+							placeholder="Enter your password"
+						/>
 
-						{/* ================= REMEMBER ME + FORGOT PASSWORD ================= */}
-						<div className="flex items-center justify-between text-xs text-[#dbcfff]/90 leading-relaxed px-1">
+						{/* ================= REMEMBER + FORGOT ================= */}
+						<div className="flex items-center justify-between text-xs text-[#dbcfff]/90 px-1">
 							<label className="flex items-center gap-2">
 								<input
 									type="checkbox"
@@ -104,12 +122,12 @@ export default function LoginPage() {
 							</Link>
 						</div>
 
-						{/* ===================== BUTTON ================= */}
-						<GeneralButton type="submit" className="mt-4">
-							Sign In
+						{/* ================= BUTTON ================= */}
+						<GeneralButton type="submit" className="mt-1" disabled={loading}>
+							{loading ? "Signing in..." : "Sign In"}
 						</GeneralButton>
 
-						{/* ===================== LINKS ================= */}
+						{/* ================= SIGNUP LINK ================= */}
 						<div className="text-center text-xs text-[#dbcfff]/80 mt-3">
 							Don’t have an account?{" "}
 							<Link
