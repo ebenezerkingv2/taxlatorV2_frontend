@@ -1,4 +1,4 @@
-// ===================================== AXIOS INSTANCE (COOKIE REFRESH)
+// ===================================== AXIOS INSTANCE (COOKIE REFRESH FIXED)
 // src/api/axios.ts
 // =====================================
 import axios from "axios";
@@ -7,7 +7,7 @@ import { getToken, setAuth, logout } from "../utils/auth";
 // =====================================
 const api = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
-	withCredentials: true, 
+	withCredentials: true,
 });
 
 // ===================================== REQUEST INTERCEPTOR
@@ -27,11 +27,17 @@ api.interceptors.response.use(
 	async (error) => {
 		const originalRequest = error.config;
 
-		if (error.response?.status === 401 && !originalRequest._retry) {
+		const isRefreshCall = originalRequest?.url?.includes("/auth/refresh");
+
+		if (
+			error.response?.status === 401 &&
+			!originalRequest._retry &&
+			!isRefreshCall
+		) {
 			originalRequest._retry = true;
 
 			try {
-				// ================= COOKIE AUTO-SENT
+				// ===================================== REFRESH TOKEN COOKIE
 				const res = await api.post("/api/auth/refresh");
 
 				const { accessToken } = res.data.data;

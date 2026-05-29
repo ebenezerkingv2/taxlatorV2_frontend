@@ -44,9 +44,9 @@ export default function LoginPage() {
 		try {
 			const res = await loginApi(email, password);
 
-			const { user, token } = res.data;
+			const { token } = res;
 
-			setAuth(token, user);
+			setAuth(token);
 
 			navigate("/dashboard");
 		} catch (err) {
