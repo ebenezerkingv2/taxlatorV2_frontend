@@ -2,7 +2,7 @@
 // src/api/axios.ts
 // =====================================
 import axios from "axios";
-import { getToken, setAuth, logout } from "../utils/auth";
+import { getToken, setAuth, logout, type User } from "../utils/auth";
 
 // =====================================
 const api = axios.create({
@@ -42,11 +42,23 @@ api.interceptors.response.use(
 
 				const { accessToken } = res.data.data;
 
-				setAuth(accessToken);
+				const currentUser = localStorage.getItem("user");
+				let user: User | null = null;
 
-				originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+				if (currentUser) {
+					user = JSON.parse(currentUser);
+				}
 
-				return api(originalRequest);
+				if (user) {
+					setAuth(accessToken, user);
+					originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+					return api(originalRequest);
+				} else {
+					// No user found, force logout
+					logout();
+					window.location.href = "/login";
+					return Promise.reject(error);
+				}
 			} catch {
 				logout();
 				window.location.href = "/login";

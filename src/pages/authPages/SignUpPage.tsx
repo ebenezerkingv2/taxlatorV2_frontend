@@ -56,9 +56,9 @@ export default function LoginOutPage() {
 				password,
 			);
 
-			const { user, token } = res.data;
+			const { user, accessToken } = res;
 
-			setAuth(token, user);
+			setAuth(accessToken, user);
 
 			toast.success("Account created successfully");
 
